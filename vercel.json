@@ -1,12 +1,14 @@
 {
-  "rewrites": [
+  "builds": [
+    { "src": "api/index.py", "use": "@vercel/python" },
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/simclass-ui/$1"
+      "src": "simclass-ui/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     }
+  ],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.py" },
+    { "source": "/(.*)", "destination": "/simclass-ui/$1" }
   ]
 }
